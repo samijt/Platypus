@@ -256,4 +256,5 @@ extern NSString * const ScriptExecDefaultsKey_ShowDetails;
 // Prototypes
 extern BOOL UTTypeIsValid(NSString *inUTI);
 extern BOOL BundleIdentifierIsValid(NSString *bundleIdentifier);
-
+extern NSString *GetCustomEnvironmentVariable(const char *envVarName);
+extern NSString *GetCustomEnvironmentVariableOrDefault(const char *envVarName, const NSString *defaultValue);
