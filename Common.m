@@ -28,6 +28,7 @@
     POSSIBILITY OF SUCH DAMAGE.
  */
 
+#import <stdio.h>
 #import <Foundation/Foundation.h>
 #import "Common.h"
 
@@ -116,4 +117,18 @@ BOOL BundleIdentifierIsValid(NSString *bundleIdentifier) {
     BOOL validUTI = UTTypeIsValid(bundleIdentifier);
     BOOL hasThreeComponents = ([[bundleIdentifier componentsSeparatedByString:@"."] count] >= 3);
     return (validUTI && hasThreeComponents);
+}
+
+NSString *GetCustomEnvironmentVariable(const char *envVarName) {
+    char *envVarPtr = getenv(envVarName);
+    if (envVarPtr) {
+        NSString *envVarValue = [NSString stringWithCString:envVarPtr encoding:NSUTF8StringEncoding];
+        return envVarValue;
+    }
+    return nil;
+}
+
+NSString *GetCustomEnvironmentVariableOrDefault(const char *envVarName, const NSString *defaultValue) {
+    NSString *envVarValue = GetCustomEnvironmentVariable(envVarName);
+    return envVarValue ? envVarValue : defaultValue;
 }

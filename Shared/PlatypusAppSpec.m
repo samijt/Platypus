@@ -134,8 +134,8 @@
 - (void)setDefaults {
     self[AppSpecKey_Creator] = PROGRAM_CREATOR_STAMP;
     
-    self[AppSpecKey_ExecutablePath] = CMDLINE_SCRIPT_EXEC_PATH;
-    self[AppSpecKey_NibPath] = CMDLINE_NIB_PATH;
+    self[AppSpecKey_ExecutablePath] = GetCustomEnvironmentVariableOrDefault("CMDLINE_SCRIPT_EXEC_PATH", CMDLINE_SCRIPT_EXEC_PATH);
+    self[AppSpecKey_NibPath] = GetCustomEnvironmentVariableOrDefault("CMDLINE_NIB_PATH", CMDLINE_NIB_PATH);
     self[AppSpecKey_DestinationPath] = DEFAULT_DESTINATION_PATH;
     self[AppSpecKey_Overwrite] = @NO;
     self[AppSpecKey_SymlinkFiles] = @NO;
@@ -144,7 +144,7 @@
     self[AppSpecKey_Name] = DEFAULT_APP_NAME;
     self[AppSpecKey_ScriptPath] = @"";
     self[AppSpecKey_InterfaceType] = DEFAULT_INTERFACE_TYPE_STRING;
-    self[AppSpecKey_IconPath] = CMDLINE_ICON_PATH;
+    self[AppSpecKey_IconPath] = GetCustomEnvironmentVariableOrDefault("CMDLINE_ICON_PATH", CMDLINE_ICON_PATH);
     
     self[AppSpecKey_InterpreterPath] = DEFAULT_INTERPRETER_PATH;
     self[AppSpecKey_InterpreterArgs] = @[];
